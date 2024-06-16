@@ -1,0 +1,122 @@
+body {
+      background-color: #f8f9fa;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: auto;
+      margin-top: 100px;
+    }
+
+
+    .dashboard-container {
+     
+      margin: auto;
+      margin-top: 50px;
+    }
+
+
+    .dashboard-box {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+
+    .chart {
+      height: 300px !important; /* Set the desired height for your charts */
+    }	
+	
+body {
+      background-color: #e9f2f9; /* Light blueish background */
+    }
+
+     .channels-container {
+     
+      margin: auto;
+      margin-top: 50px;
+    }
+
+    .channels-box {
+      border: 1px solid #cfe2f3; /* Light blue border */
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #ffffff; /* White background */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    }
+
+    .channels-box h4 {
+      color: #007bff; /* Blue header text */
+    }
+
+    .table th, .table td {
+      border-color: #cfe2f3; /* Light blue border for table cells */
+    }
+
+    .btn-primary, .btn-info, .btn-warning, .btn-success {
+      background-color: #007bff; /* Blue buttons */
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover, .btn-info:hover, .btn-warning:hover, .btn-success:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      border-color: #0056b3;
+    }
+	
+	
+	.btn-edit {
+      background-color: #28a745; /* Green */
+      border-color: #28a745;
+    }
+
+    .btn-view {
+      background-color: #ffc107; /* Yellow */
+      border-color: #ffc107;
+    }
+
+    .btn-disable {
+      background-color: #dc3545; /* Red */
+      border-color: #dc3545;
+    }
+	
+	    /* Custom styles for the fancy menu */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .navbar-custom {
+      background-color: #343a40; /* Dark background color */
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav .nav-link {
+      color: #ffffff; /* White text color */
+    }
+
+    .navbar-custom .navbar-toggler-icon {
+      background-color: #ffffff; /* White color for the toggle icon */
+    }
+
+    /* Submenu styles */
+    .navbar-custom .navbar-nav .nav-item.dropdown:hover > .nav-link::after {
+      content: '\25BC'; /* Downward arrow for the dropdown */
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    .navbar-custom .navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .navbar-custom .navbar-nav .nav-item.dropdown .dropdown-item:hover {
+      background-color: #495057; /* Darker background color on hover */
+    }
+	
+	.form-group{
+		margin-bottom: 1rem!important
+	}
+	
+	.test-suite-setup-container{
+		 margin: auto;
+		 margin-top: 50px;
+	}
