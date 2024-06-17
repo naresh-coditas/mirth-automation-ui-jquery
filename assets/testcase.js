@@ -61,7 +61,7 @@ function searchTestCases() {
 		headers: {
 			'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
 			'Content-Type': 'application/json',
-			'X-MIRTH-SERVER-ID': 1
+			'X-MIRTH-SERVER-ID': X_MIRTH_SERVER_ID
 		},
 		success: renderTestCaseGrid,
 		error: function(xhr, status, error) {
@@ -70,7 +70,7 @@ function searchTestCases() {
 	});
 }
 
-function saveTestCase() {
+function saveTestCase(showTestSteps) {
 	var dataPayload = {
 		"id": selectedTestCaseId,
 		"automationEnabled": true,
@@ -93,11 +93,16 @@ function saveTestCase() {
 		headers: {
 			'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
 			'Content-Type': 'application/json',
-			'X-MIRTH-SERVER-ID': 1
+			'X-MIRTH-SERVER-ID': X_MIRTH_SERVER_ID
 		},
-		success: function(){},
+		success: function(response){
+			if(showTestSteps){
+				showSection('testStepList', selectedTestCaseId, JSON.stringify(response));
+			}
+		},
 		error: function(xhr, status, error) {
 			console.error('Login failed:', status, error);
 		}
 	});
 }
+

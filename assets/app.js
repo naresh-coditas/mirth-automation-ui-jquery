@@ -1,4 +1,5 @@
 API_ENDPOINT = "http://localhost:8080";
+X_MIRTH_SERVER_ID = 1;
 seletedChannelID = '';
 seletedChannelName = '';
 selectedTestCaseId = '';
@@ -36,6 +37,9 @@ function showSection(sectionId, value1, value2) {
 		case "EditTestCaseScreen":
 			fileName = "addTestCaseScreen.html";
 			break;
+		case "testStepList":
+			fileName = "testStepList.html";
+			break;
 	}
 	$("#main-content").load(fileName, function(response, status, xhr) {
 		if (status === "success") {
@@ -64,13 +68,16 @@ function renderUI(sectionId, value1, value2) {
 			fileName = "testRunHistoryScreen.html";
 			break;
 		case "testStepActionSetup":
-			fileName = "testStepActionSetup.html";
+			renderTestStepsetup();
 			break;
 		case "AddTestCaseScreen":
 			renderAddTestcaseScreenUI(value1, value2);
 			break;
 		case "EditTestCaseScreen":
 			renderEditTestcaseScreenUI(value1, value2);
+			break;
+		case "testStepList":
+			renderTestStepList(value1, value2);
 			break;
 	}
 }
@@ -83,7 +90,7 @@ function fetchChannels(successCallBack) {
 		headers: {
 			'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
 			'Content-Type': 'application/json',
-			'X-MIRTH-SERVER-ID': 1
+			'X-MIRTH-SERVER-ID': X_MIRTH_SERVER_ID
 		},
 		success: successCallBack,
 		error: function(xhr, status, error) {
