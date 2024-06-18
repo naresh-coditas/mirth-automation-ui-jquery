@@ -1,102 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Your Web App</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Your Web App</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/style.css">
-  <style>
-    /* Add your custom styles here */
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="static/sb_admin/styles/style.css">
+<style>
+/* Add your custom styles here */
+</style>
+
+ <script src="static/sb_admin/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="static/sb_admin/bower_components/angular/angular.min.js"></script>
+    <script src="static/sb_admin/bower_components/angular-animate/angular-animate.min.js"></script>
+     <script src="static/sb_admin/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="static/sb_admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="static/sb_admin/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="static/sb_admin/bower_components/json3/lib/json3.min.js"></script>
+    <script src="static/sb_admin/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <script src="static/sb_admin/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="static/sb_admin/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="static/sb_admin/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="static/sb_admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="static/sb_admin/bower_components/Chart.js/Chart.min.js"></script>
+    <script src="static/sb_admin/js/sb-admin-2.js"></script>
+    <script src="static/external/toaster/toaster.js"></script>
+    <script src="static/external/angular.ui-tree/angular-ui-tree.js"></script>
+    <script src="static/sb_admin/scripts/app.js"></script>
+     <script src="static/sb_admin/scripts/constants.js"></script>
 </head>
-<body>
+<body ng-app="sbAdminApp">
 
 
-<!-- 2) Welcome Screen with Horizontal Menus -->
-<div id="welcomeScreen" class="container mt-5" >
- 
-  
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item ">
-					  <a class="nav-link" href="#" onclick="showSection('dashboardScreen','','')">Dashboard</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="#" onclick="showSection('channelsScreen','','')">Channels</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="#" onclick="showSection('testCaseSetupScreen','','')">Test Case Setup</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="#" onclick="showSection('testSuitesScreen','','')">Test Suite Setup</a>
-					</li>
-					<li class="nav-item">
-					  <a class="nav-link" href="#" onclick="showSection('testRunHistoryScreen','','')">Test Run History</a>
-					</li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            System
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#" onclick="showSection('testStepActionSetup','','')">Test Step Action Setup</a>
-                            <a class="dropdown-item" href="#">Parameter Setup</a>
-							<a class="dropdown-item" href="#">Channel Test Group</a>
-							<a class="dropdown-item" href="#">Notification</a>
-							
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-<div id="main-content" class="container mt-5 screen" >
-</div>
-<script src="assets/app.js"></script>
-<script src="assets/app_chart.js"></script>
-<script src="assets/jquery-3.3.1.slim.min.js"></script>
-<script src="assets/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/script.js"></script>
-<script src="assets/chart.js"></script>
-<script src="assets/jquery-3.6.0.min.js"></script>
-<script src="assets/testcase.js"></script>
-<script src="assets/channel.js"></script>
-<script src="assets/teststep.js"></script>
-
-<script>
-        $(document).ready(function(){
-        	$("#main-content").load("dashboard.html", function(response, status, xhr) {
-                if (status === "success") {
-                    console.log("Content loaded successfully.");
-                    loadChart();
-                } else if (status === "error") {
-                    console.error("Failed to load the file:", xhr.status, xhr.statusText);
-                }
-            });
-        });
-    </script>
+	<!-- 2) Welcome Screen with Horizontal Menus -->
+	
+	<div id="parent-content" class="container mt-5 screen" ui-view>
+	</div>
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>
