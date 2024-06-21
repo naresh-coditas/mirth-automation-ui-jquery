@@ -17,8 +17,23 @@ angular.module('sbAdminApp')
 				}
 			};
 
-			$http.get(API_CONFIG.BASE_URL+"/channels", config).success(function(response) {
-				$scope.contents = response;
+			$http.get(API_CONFIG.BASE_URL+"/actions/"+actionId, config).success(function(response) {
+				$scope.formData = response;
+			});
+		};
+		
+		$scope.saveTestCase = function(){
+			
+			var config = {
+				headers: {
+					'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
+					'Content-Type': 'application/json',
+					'X-MIRTH-SERVER-ID': API_CONFIG.X_MIRTH_SERVER_ID
+				}
+			};
+
+			$http.post(API_CONFIG.BASE_URL+"/actions", $scope.formData, config).success(function(response) {
+				$scope.formData = response;
 			});
 		};
 		$scope.init();

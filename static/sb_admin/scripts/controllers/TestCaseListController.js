@@ -1,5 +1,5 @@
 angular.module('sbAdminApp')
-	.controller('TestCaseListController', function($scope, $position, $http, $state, API_CONFIG, $stateParams) {
+	.controller('TestCaseListController', function($scope, $position, $http, $state, API_CONFIG, $stateParams,$sce,$modal) {
 
 	$scope.listChannels = function() {
 			var config = {
