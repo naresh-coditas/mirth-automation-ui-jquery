@@ -43,7 +43,16 @@ angular
       .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'static/views/dashboard/dashboard-header.html',
+        controller : 'DashboardHeaderController',
         resolve: {
+			 loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+				'static/sb_admin/scripts/controllers/DashboardHeaderController.js'
+              ]
+            })
+          },
             loadMyDirectives:function($ocLazyLoad){
                 return $ocLazyLoad.load(
                 {
@@ -349,12 +358,12 @@ angular
 angular.module('sbAdminApp').run(function($rootScope, $state, AuthService) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (true) {
-            AuthService.isLoggedIn().then(function(isLoggedIn) {
-                if (!isLoggedIn) {
-                    event.preventDefault();
-                   // $state.go('login');
-                }
-            });
+//            AuthService.isLoggedIn().then(function(isLoggedIn) {
+//                if (!isLoggedIn) {
+//                    event.preventDefault();
+//                    $state.go('login');
+//                }
+//            });
         }
     });
 });

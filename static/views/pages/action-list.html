@@ -1,7 +1,6 @@
-<div class="container mt-5 screen channels-box" id="testStepActionSetup" >
+<div class=" screen " id="testStepActionSetup" >
 <h2 class="text-left">Test Step Action List</h2>
-<button class="btn btn-primary float-end" ng-click="showAddTestStepActionUI()">Add Test Step Action</button>
- <br/>
+<button class="btn btn-primary float-end float-right" ng-click="showAddTestStepActionUI()">Add Test Step Action</button>
  <br/>
 <table class="table">
     <thead>
@@ -17,7 +16,7 @@
       <!-- Sample Row (Replace with dynamic data) -->
       <tr class="info">
 					<td ng-if="actionList == null || actionList.length == 0"
-						colspan="{{headers.length}}" class="text-center">No Records
+						colspan="4" class="text-center">No Records
 						Available to Display</td>
 				</tr>
 				<tr ng-repeat="content in actionList"

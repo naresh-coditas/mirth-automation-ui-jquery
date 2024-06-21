@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-	.controller('ChannelController', function($scope, $position, $http, API_CONFIG, $state) {
+	.controller('ChannelController', function($scope, $position, $http, API_CONFIG, $state, $sce,$modal) {
 		$scope.init = function() {
 			
 			$scope.listChannels();
