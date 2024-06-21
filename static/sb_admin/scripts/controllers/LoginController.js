@@ -7,7 +7,7 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-	.controller('LoginController', function($scope, $position, $http, $state) {
+	.controller('LoginController', function($scope, $position, $http, $state, API_CONFIG) {
 
 	$scope.loginInfo = {};
 		$scope.login = function() {

@@ -33,5 +33,8 @@ angular.module('sbAdminApp')
 		$scope.showEditTestcaseForm = function(channelId, testCaseId){
 			$state.go('dashboard.test-case-edit-entry', {'channelId':channelId, 'testCaseId': testCaseId});
 		};
+		$scope.showAddTestCaseScreen = function(){
+			$state.go('dashboard.test-case-entry', {'channelId':$scope.mirthChannelId});
+		};
 		$scope.init();
 	});

@@ -173,6 +173,51 @@ angular
           }
         }
     })
+    .state('dashboard.test-case-step-entry',{
+        templateUrl:'static/views/pages/test-case-step-entry.html',
+        controller:'TestCaseStepEntryController',
+        url:'/test-case-step-entry/:testCaseId',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+				'static/sb_admin/scripts/controllers/TestCaseStepEntryController.js',
+              ]
+            })
+          }
+        }
+    })
+    .state('dashboard.action-setup',{
+        templateUrl:'static/views/pages/action-setup.html',
+        controller:'ActionSetupController',
+        url:'/action-setup/:actionId',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+				'static/sb_admin/scripts/controllers/ActionSetupController.js',
+              ]
+            })
+          }
+        }
+    })
+    .state('dashboard.action-list',{
+        templateUrl:'static/views/pages/action-list.html',
+        controller:'ActionListController',
+        url:'/action-list',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+				'static/sb_admin/scripts/controllers/ActionListController.js',
+              ]
+            })
+          }
+        }
+    })
       .state('dashboard.chart',{
         templateUrl:'static/views/chart.html',
         url:'/chart',
@@ -298,76 +343,18 @@ angular
               }
             }
       })
-      .state('dashboard.property-set',{
-          templateUrl:'static/views/property-set.html',
-          url:'/property-set',
-          controller:'PropertySetListController',
-          resolve: {
-              loadMyFile:function($ocLazyLoad) {
-                return $ocLazyLoad.load({
-              	name:'sbAdminApp',
-                  files:[
-                    'static/sb_admin/scripts/services/CommonUtilityService.js',
-                  ]
-                }),
-                $ocLazyLoad.load({
-              	name:'sbAdminApp',
-                  files:[
-                    'static/sb_admin/scripts/controllers/PropertySetListController.js',
-                  ]
-                });
-              }
-            }
-      })
-      .state('dashboard.property-set-entry',{
-          templateUrl:'static/views/property-set-entry.html',
-          url:'/property-set-new/:id',
-          controller:'PropertySetController',
-          resolve: {
-              loadMyFile:function($ocLazyLoad) {
-                return $ocLazyLoad.load({
-              	name:'sbAdminApp',
-                  files:[
-                    'static/sb_admin/scripts/services/CommonUtilityService.js',
-                  ]
-                }),
-                $ocLazyLoad.load({
-              	name:'sbAdminApp',
-                  files:[
-                    'static/sb_admin/scripts/controllers/PropertySetController.js',
-                  ]
-                });
-              }
-            }
-      })
-      .state('dashboard.panels-wells',{
-          templateUrl:'static/views/ui-elements/panels-wells.html',
-          url:'/panels-wells'
-      })
-      .state('dashboard.tabel',{
-          templateUrl:'static/views/table.html',
-          url:'/table'
-      })
-      .state('dashboard.buttons',{
-        templateUrl:'static/views/ui-elements/buttons.html',
-        url:'/buttons'
-    })
-      .state('dashboard.notifications',{
-        templateUrl:'static/views/ui-elements/notifications.html',
-        url:'/notifications'
-    })
-      .state('dashboard.typography',{
-       templateUrl:'static/views/ui-elements/typography.html',
-       url:'/typography'
-   })
-      .state('dashboard.icons',{
-       templateUrl:'static/views/ui-elements/icons.html',
-       url:'/icons'
-   })
-      .state('dashboard.grid',{
-       templateUrl:'static/views/ui-elements/grid.html',
-       url:'/grid'
-   })
   }]);
 
     
+angular.module('sbAdminApp').run(function($rootScope, $state, AuthService) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        if (true) {
+            AuthService.isLoggedIn().then(function(isLoggedIn) {
+                if (!isLoggedIn) {
+                    event.preventDefault();
+                   // $state.go('login');
+                }
+            });
+        }
+    });
+});

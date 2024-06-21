@@ -1,14 +1,13 @@
 angular.module('sbAdminApp')
-	.controller('TestCaseStepListController', function($scope, $position, $http, $state, API_CONFIG, $stateParams) {
+	.controller('TestCaseStepEntryController', function($scope, $position, $http, $state, API_CONFIG, $stateParams) {
 
+$scope.actionList = [];
 	$scope.formData = {
-		mirthChannelId: $stateParams.channelId,
-		testCaseId : $stateParams.testCaseId,
-		automationEnabled : true
+		testCaseId : $stateParams.testCaseId
 	};
 		$scope.init = function(){
 			$scope.fetchTestCaseDetails($scope.formData.testCaseId);
-			$scope.loadTestStepList($scope.formData.testCaseId);
+			$scope.loadActions();
 		};
 		$scope.fetchTestCaseDetails = function(testCaseId){
 			var config = {
@@ -24,7 +23,7 @@ angular.module('sbAdminApp')
 			});
 		};
 		
-		$scope.loadTestStepList = function(testCaseId){
+		$scope.loadActions = function(){
 			var config = {
 				headers: {
 					'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
@@ -32,8 +31,8 @@ angular.module('sbAdminApp')
 					'X-MIRTH-SERVER-ID': 1
 				}
 			};
-			$http.get(API_CONFIG.BASE_URL+"/test-case/"+testCaseId+ '/test-steps', config).success(function(response) {
-				$scope.testStepList = response;
+			$http.get(API_CONFIG.BASE_URL+"/actions", config).success(function(response) {
+				$scope.actionList = response;
 			});
 		};
 		
@@ -50,10 +49,22 @@ angular.module('sbAdminApp')
 			});
 		};
 		$scope.showEditTestcaseForm = function(channelId, testCaseId){
-			$state.go('dashboard.test-case-edit-entry', {'testCaseId': $scope.formData.testCaseId,'channelId':channelId});
+			$state.go('dashboard.test-case-edit-entry', {'testCaseId': testCaseId,'channelId':channelId});
 		};
 		$scope.showAddTeststepUI = function(){
-			$state.go('dashboard.test-case-step-entry', {'testCaseId': $scope.formData.testCaseId});
+			$state.go('dashboard.test-case-step-entry', {'testCaseId': testCaseId});
+		};
+		$scope.loadActionInputFields = function(actionId){
+			var config = {
+				headers: {
+					'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
+					'Content-Type': 'application/json',
+					'X-MIRTH-SERVER-ID': 1
+				}
+			};
+			$http.get(API_CONFIG.BASE_URL+"/actions/"+actionId+"/detail-list", config).success(function(response) {
+				$scope.actionUIFields = response;
+			});
 		};
 		$scope.init();
 	});

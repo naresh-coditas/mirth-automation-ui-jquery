@@ -1,0 +1,111 @@
+<div id="addTestStepScreen" class="container mt-5 screen">
+  <h2>Add Test Step</h2>
+  <form>
+    <!-- 8.1) Channel Name Label with Value -->
+   <div class="row">
+		 <div class="form-group col-sm-5">
+		  <label>Channel Name</label>
+		  <input type="text" class="form-control" ng-model="formData.channelName" disabled="disabled" id="channelName"/>
+		</div>
+		<div class="form-group col-sm-5">
+		  <label>Test Case Description</label>
+		  <input type="text" class="form-control" ng-model="formData.testCaseDescription" disabled="disabled" id="testCaseDesc">
+		</div>
+     </div>
+
+    <!-- 8.3) Sequence -->
+    <div class="form-group">
+      <label for="sequence">Sequence</label>
+      <input type="text" class="form-control" id="sequence" name="sequence" ng-model="formData.sequence"/>
+    </div>
+
+    <!-- 8.4) Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" ng-model="formData.description"></textarea>
+    </div>
+
+    <!-- 8.5) Action Drop Down -->
+    <div class="form-group">
+      <label for="actionDropdown">Action</label>
+      <select class="form-control" id="actionDropdown" name="action"  ng-model="formData.actionId" ng-change="loadActionInputFields(formData.actionId)">
+      	<option value="">select</option>
+        <option ng-repeat="x in actionList" value="{{x.id}}"
+        ng-selected="{{x.id == formData.actionId}}">{{x.description}}</option>
+      </select>
+      
+    </div>
+    
+    <div class="card mb-3">
+            <div class="card-header">
+                Action Input UI Fields
+            </div>
+            <div class="card-body">
+            	<div class="form-group" ng-repeat="field in actionUIFields | filter:{fieldType: 'INPUT'}">
+			             <label>{{field.inputLabel}}</label>
+        
+				        <input ng-if="field.inputType === 'TEXT'" type="text" 
+				               name="{{field.inputIdentifierName}}" 
+				               ng-model="field.defaultValue" 
+				               ng-disabled="field.isEditable === false" class="form-control"/>
+				        
+				        <input ng-if="field.inputType === 'PASSWORD'" type="password" 
+				               name="{{field.inputIdentifierName}}" 
+				               ng-model="field.defaultValue" 
+				               ng-disabled="field.isEditable === false" class="form-control"/>
+				        
+				        <input ng-if="field.inputType === 'DATEPICKER'" type="date" 
+				               name="{{field.inputIdentifierName}}" 
+				               ng-model="field.defaultValue" 
+				               ng-disabled="field.isEditable === false" class="form-control"/>
+				        
+				        <select ng-if="field.inputType === 'DROPDOWN'" 
+				                name="{{field.inputIdentifierName}}" 
+				                ng-model="field.defaultValue" 
+				                ng-disabled="field.isEditable === false" class="form-control">
+				            <option ng-repeat="option in field.optionValues" value="{{option.optionValue}}">
+				                {{option.optionDescription}}
+				            </option>
+				        </select>
+				        
+				        <input ng-if="field.inputType === 'CHECKBOX'" type="checkbox" 
+				               name="{{field.inputIdentifierName}}" 
+				               ng-model="field.defaultValue" 
+				               ng-disabled="field.isEditable === false" class="form-control"/>
+				        
+				        <div ng-if="field.inputType === 'RADIOBUTTON'">
+				            <label ng-repeat="option in field.options">
+				                <input type="radio" name="{{field.inputIdentifierName}}" 
+				                       ng-model="$parent.field.defaultValue" 
+				                       value="{{option.value}}" 
+				                       ng-disabled="field.isEditable === false" class="form-control"/>
+				                {{option.label}}
+				            </label>
+				        </div>
+			      
+			    </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                Action Assertion UI Fields
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
+	<div class="card mb-3">
+            <div class="card-header">
+                Action Output UI Fields
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
+	
+    
+    <!-- 8.6) Additional Elements based on Action Drop Down -->
+    <!-- Add your elements dynamically based on the selected action -->
+
+    <!-- 8.7) Save Button -->
+    <button type="button" class="btn btn-primary" onclick="saveTestStep()">Save</button>
+  </form>
+</div>
