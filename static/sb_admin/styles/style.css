@@ -125,4 +125,10 @@ body {
 	cursor: pointer;
 	}
 	
-	
+	.modal-header{
+		font-size: 17px;
+		padding: 5px;
+	}
+	.modal-body {
+    padding: 5px;
+}

@@ -1,0 +1,85 @@
+<div class="modalImage">
+	<div class="modal-header">
+		Add Input UI Element
+		<button ng-click="$dismiss()" class="close pull-right"
+			aria-hidden="true">&times;</button>
+
+		<div class="clearfix"></div>
+	</div>
+	<div class="modal-body">
+		<div class="modal-body">
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="elementLabel">Identifier Code:</label> <input
+							type="text" class="form-control" id="elementLabel"
+							name="elementLabel" ng-model="actionUIInputData.inputIdentifierName" required>
+					</div>
+				</div>
+				<div class="col-md-6 mb-3">
+					<div class="form-group" id="addUIElement">
+						<label for="elementType">Element Type:</label> <select
+							class="form-control" id="inputType" name="inputType" ng-model="actionUIInputData.inputType">
+							<option value="TEXT">Text Input</option>
+							<option value="PASSWORD">Password Input</option>
+							<option value="CHECKBOX">Checkbox</option>
+							<option value="DROPDOWN">Dropdown</option>
+							<option value="TEXTAREA">Text Area</option>
+							<option value="RADIOBUTTON">Radio Button</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="elementLabel">Element Label:</label> <input
+							type="text" class="form-control" id="elementLabel"
+							name="elementLabel" ng-model="actionUIInputData.inputLabel" required>
+					</div>
+				</div>
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="defaultValue">Default Value:</label> <input
+							type="text" class="form-control" id="defaultValue"
+							name="defaultValue" ng-model="actionUIInputData.defaultValue">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="Sequence">Sequence:</label> <input type="text"
+							class="form-control" id="Sequence" name="Sequence" ng-model="actionUIInputData.sequence">
+					</div>
+				</div>
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="defaultValue">Mandatory:</label> <input
+							type="checkbox" id="mandatory" name="mandatory" ng-model="actionUIInputData.mandatory"/>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="optionsGroup" class="form-group d-none">
+				<label for="options">Dropdown Options:</label> <input type="text"
+					class="form-control" id="options" name="options"
+					placeholder="Option1, Option2, Option3"> <small
+					class="form-text text-muted">Enter comma-separated options
+					for the dropdown (e.g., Option1, Option2).</small>
+			</div>
+
+
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary"
+				data-bs-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary" ng-click="saveActionParameter()">Save changes</button>
+		</div>
+	</div>
+</div>

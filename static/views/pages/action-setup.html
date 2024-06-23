@@ -23,28 +23,26 @@
 				ng-model="formData.description" required>
 		</div>
 		<button ng-if="formData.id === null || formData.id == ''"
-			type="button" class="btn btn-primary" ng-click="saveTestCase()">Save</button>
+			type="button" class="btn btn-primary" ng-click="saveTestStepAction()">Save</button>
 		<button ng-if="formData.id !== null && formData.id != ''"
-			type="button" class="btn btn-primary" ng-click="updateTestCase()">Update</button>
-		<button ng-if="formData.id !== null && formData.id != ''"
-			type="button" class="btn btn-primary" ng-click="showAddStepsList()">Add
-			Test Steps</button>
+			type="button" class="btn btn-primary" ng-click="updateTestStepAction()">Update</button>
 		<div ng-if="formData.id !== null && formData.id != ''">
 			<h4 class="text-left">Action UI Elements Configuration</h4>
-			<button class="btn btn-primary float-right" data-bs-toggle="modal"
-				data-bs-target="#addUIElementPopup">Add Input UI Element</button>
+			<button class="btn btn-primary float-right" 
+				ng-click="openAddInputUIElement('INPUT')">Add Input UI Element</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-primary float-right" data-bs-toggle="modal"
-				data-bs-target="#addAssertionUIElementPopup">Add Assertion
+				ng-click="openAddInputUIElement('ASSERTION')">Add Assertion
 				UI Element</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-primary float-right" data-bs-toggle="modal"
-				data-bs-target="#addOutputVariablesUIElementPopup">Add
+				ng-click="openAddInputUIElement('OUTPUT')">Add
 				Output UI Element</button>
 			<br />
 			<table class="table">
 				<thead>
 					<tr>
+						<th>Action</th>
 						<th>Sequence</th>
 						<th>Input Type</th>
 						<th>Input Label</th>
@@ -53,29 +51,27 @@
 					</tr>
 				</thead>
 				<tbody>
+				<tr class="info">
+					<td ng-if="formData.actionInputList == null || formData.actionInputList == 0"
+						colspan="4" class="text-center">No Records
+						Available to Display</td>
+				</tr>
 					<!-- Sample Row (Replace with dynamic data) -->
-					<tr>
-						<td>1</td>
-						<td>Text Box</td>
-						<td>HTTP Url</td>
-						<td>NONE</td>
-						<th>Input</th>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Text Box</td>
-						<td>Response Status</td>
-						<td>200</td>
-						<th>Assertion</th>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Check Box</td>
-						<td>Response Body</td>
-						<td>NONE</td>
-						<th>Output</th>
-					</tr>
-					<!-- Add more rows as needed -->
+					<tr ng-repeat="content in formData.actionInputList"
+					ng-click="viewTestCases(content.testRunID)">
+					<td>
+						<!-- Action Buttons -->
+						<div class="action-buttons">
+							<button class="btn btn-edit" ng-click="openEditInputUIElement(content.id)">Edit</button>
+							<button class="btn btn-view">View</button>
+						</div>
+					</td>
+					<td>{{content.sequence}}</td>
+					<td>{{content.inputType}}</td>
+					<td>{{content.inputLabel}}</td>
+					<td>{{content.defaultValue}}</td>
+					<td>{{content.fieldType}}
+				</tr>
 				</tbody>
 			</table>
 		</div>
