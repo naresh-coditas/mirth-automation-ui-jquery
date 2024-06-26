@@ -207,6 +207,7 @@ angular
               name:'sbAdminApp',
               files:[
 				'static/sb_admin/scripts/controllers/ActionSetupController.js',
+				'static/sb_admin/scripts/controllers/ActionParameterPopupController.js'
               ]
             })
           }
@@ -358,12 +359,12 @@ angular
 angular.module('sbAdminApp').run(function($rootScope, $state, AuthService) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         if (true) {
-//            AuthService.isLoggedIn().then(function(isLoggedIn) {
-//                if (!isLoggedIn) {
-//                    event.preventDefault();
-//                    $state.go('login');
-//                }
-//            });
+            AuthService.isLoggedIn().then(function(isLoggedIn) {
+                if (!isLoggedIn) {
+                    event.preventDefault();
+                    $state.go('login');
+                }
+            });
         }
     });
 });

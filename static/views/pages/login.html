@@ -1,13 +1,48 @@
-<div id="loginScreen" class="container mt-5">
-  <form>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="Enter your username" ng-model="loginInfo.userName">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter your password" ng-model="loginInfo.password">
-    </div>
-    <button type="button" class="btn btn-primary" ng-click="login()">Sign In</button>
-  </form>
+<div id="wrapper">
+
+	<!-- Navigation -->
+
+	<nav class="navbar navbar-default navbar-static-top" role="navigation"
+		style="margin-bottom: 0">
+		<div class="navbar-header">
+
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">Mirth Automation</a>
+		</div>
+
+
+
+	</nav>
+	<!-- /.navbar-top-links -->
+
+
+	<!-- /.navbar-static-side -->
+
+	<div id="login-page">
+		 
+		<div id="loginScreen" class="container mt-5">
+		<h2  align="center">Login</h2>
+			<form>
+				<div class="form-group">
+					<label for="username">Username</label> <input type="text"
+						class="form-control" id="username"
+						placeholder="Enter your username" 	ng-model="loginInfo.userName">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label> <input type="password"
+						class="form-control" id="password"
+						placeholder="Enter your password" ng-model="loginInfo.password">
+				</div>
+				<button type="button" class="btn btn-primary" ng-click="login()">Sign
+					In</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- /#page-wrapper -->
 </div>

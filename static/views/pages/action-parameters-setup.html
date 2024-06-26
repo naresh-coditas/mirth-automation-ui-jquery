@@ -1,6 +1,7 @@
-<div class="modalImage">
-	<div class="modal-header">
-		Add Input UI Element
+<div class="modalImage panel-success">
+	<div class="modal-header panel-heading"
+		style="padding-left: 15px !important;font-weight: bold;">
+		{{getPopupTitle()}}
 		<button ng-click="$dismiss()" class="close pull-right"
 			aria-hidden="true">&times;</button>
 
@@ -10,17 +11,55 @@
 		<div class="modal-body">
 
 			<div class="row">
-				<div class="col-md-6 mb-3">
+				<div class="col-md-4 mb-3">
 					<div class="form-group">
 						<label for="elementLabel">Identifier Code:</label> <input
 							type="text" class="form-control" id="elementLabel"
-							name="elementLabel" ng-model="actionUIInputData.inputIdentifierName" required>
+							name="elementLabel"
+							ng-model="actionUIInputData.inputIdentifierName" required>
 					</div>
 				</div>
-				<div class="col-md-6 mb-3">
+				<div class="col-md-4 mb-3">
+					<div class="form-group">
+						<label for="elementLabel">Element Label:</label> <input
+							type="text" class="form-control" id="elementLabel"
+							name="elementLabel" ng-model="actionUIInputData.inputLabel"
+							required>
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<div class="form-group">
+						<label for="defaultValue">Default Value:</label> <input
+							type="text" class="form-control" id="defaultValue"
+							name="defaultValue" ng-model="actionUIInputData.defaultValue">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-4 mb-3">
+					<div class="form-group">
+						<label for="Sequence">Sequence:</label> <input type="text"
+							class="form-control" id="Sequence" name="Sequence"
+							ng-model="actionUIInputData.sequence">
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+				
+				 <div class=form-group>
+                            <label for="defaultValue">Mandatory:</label> <input
+							type="checkbox" id="mandatory" name="mandatory" class="checkbox-form-control"
+							ng-model="actionUIInputData.mandatory" />
+                  </div>
+					
+				</div>
+				<div class="col-md-4 mb-3">
 					<div class="form-group" id="addUIElement">
-						<label for="elementType">Element Type:</label> <select
-							class="form-control" id="inputType" name="inputType" ng-model="actionUIInputData.inputType">
+						<label for="elementType">Input Type:</label> <select
+							class="form-control" id="inputType" name="inputType"
+							ng-model="actionUIInputData.inputType">
+							<option value="">Select Input Type</option>
 							<option value="TEXT">Text Input</option>
 							<option value="PASSWORD">Password Input</option>
 							<option value="CHECKBOX">Checkbox</option>
@@ -31,55 +70,58 @@
 					</div>
 				</div>
 			</div>
-
-
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<div class="form-group">
-						<label for="elementLabel">Element Label:</label> <input
-							type="text" class="form-control" id="elementLabel"
-							name="elementLabel" ng-model="actionUIInputData.inputLabel" required>
-					</div>
-				</div>
-				<div class="col-md-6 mb-3">
-					<div class="form-group">
-						<label for="defaultValue">Default Value:</label> <input
-							type="text" class="form-control" id="defaultValue"
-							name="defaultValue" ng-model="actionUIInputData.defaultValue">
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<div class="form-group">
-						<label for="Sequence">Sequence:</label> <input type="text"
-							class="form-control" id="Sequence" name="Sequence" ng-model="actionUIInputData.sequence">
-					</div>
-				</div>
-				<div class="col-md-6 mb-3">
-					<div class="form-group">
-						<label for="defaultValue">Mandatory:</label> <input
-							type="checkbox" id="mandatory" name="mandatory" ng-model="actionUIInputData.mandatory"/>
-					</div>
-				</div>
-			</div>
-
-
-			<div id="optionsGroup" class="form-group d-none">
-				<label for="options">Dropdown Options:</label> <input type="text"
-					class="form-control" id="options" name="options"
-					placeholder="Option1, Option2, Option3"> <small
-					class="form-text text-muted">Enter comma-separated options
-					for the dropdown (e.g., Option1, Option2).</small>
+			
+			<div ng-if="actionUIInputData.inputType == 'DROPDOWN' || actionUIInputData.inputType == 'CHECKBOX' || actionUIInputData.inputType == 'RADIOBUTTON'">
+			<label for="Sequence">Configure Options:</label>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th style="width: 30%;"><button type="button" class="btn btn-primary btn-xs"
+								ng-click="showAddOption(true)">Add New Option</button></th>
+						<th>Code</th>
+						<th>Label</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-if="showAddnewUI">
+						<td><button class="btn btn-success btn-sm"
+								ng-click="addOption(true)">Save</button>
+								<button class="btn btn-success btn-sm"
+								ng-click="showAddOption(false)">Cancel</button></td>
+						<td><input type="text" class="form-control"
+							ng-model="newRow.value" placeholder=""></td>
+						<td><input type="text" class="form-control"
+							ng-model="newRow.label" placeholder=""></td>
+					</tr>
+					<tr ng-repeat="row in actionUIInputData.optionValueList">
+						<td>
+							<button class="btn btn-primary btn-sm" ng-click="editRow(row)"
+								ng-if="!row.editing">Edit</button>
+							<button class="btn btn-danger btn-sm" ng-click="deleteRow(row)"
+								ng-if="!row.editing">Delete</button>	
+							<button class="btn btn-success btn-sm" ng-click="saveRow(row)"
+								ng-if="row.editing">Save</button>
+							<button class="btn btn-success btn-sm" ng-click="saveRow(row)"
+								ng-if="row.editing">Cancel</button>	
+						</td>
+						<td><span ng-if="!row.editing">{{row.value}}</span> <input
+							type="text" class="form-control" ng-if="row.editing"
+							ng-model="row.value"></td>
+						<td><span ng-if="!row.editing">{{row.label}}</span> <input
+							type="text" class="form-control" ng-if="row.editing"
+							ng-model="row.label"></td>
+					</tr>
+				</tbody>
+			</table>
 			</div>
 
 
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-secondary"
-				data-bs-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary" ng-click="saveActionParameter()">Save changes</button>
+				ng-click="dismiss()">Close</button>
+			<button type="button" class="btn btn-primary"
+				ng-click="saveActionParameter()">Save changes</button>
 		</div>
 	</div>
 </div>

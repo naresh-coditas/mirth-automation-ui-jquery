@@ -1,52 +1,65 @@
-<div id="testCaseSetupScreen" class=" mt-5 screen" >
-  <h2>Test Case Setup</h2>
-  <form>
-    <!-- 5.1) Grid Filters -->
-    <div class="form-group">
-      <label for="channelDropdown">Channel Name</label>
-      <select class="form-control" id="channelDropdown" name="channel"  ng-model="mirthChannelId">
-      	<option value="">select</option>
-        <option ng-repeat="x in channelList" value="{{x.id}}"
-        ng-selected="{{x.id == formData.mirthChannelId}}">{{x.channelName}}</option>
-      </select>
-    </div>
+<div id="testCaseSetupScreen" class=" mt-5 screen">
+	<h2>Test Case List</h2>
+	<div class="panel panel-primary">
+		<div class="panel-heading">Filter Detail</div>
+		<div class="panel-body">
+			<!-- 5.1) Grid Filters -->
+			<div class="form-group">
+				<label for="channelDropdown">Channel Name</label> <select
+					class="form-control" id="channelDropdown" name="channel"
+					ng-model="mirthChannelId">
+					<option value="">Select Channel</option>
+					<option ng-repeat="x in channelList" value="{{x.id}}"
+						ng-selected="{{x.id == formData.mirthChannelId}}">{{x.channelName}}</option>
+				</select>
+			</div>
 
-    <!-- 5.2) Add Test Case Button -->
-    <button type="button" class="btn btn-primary" ng-click="searchTestCases()">Search</button>
-    <button type="button" class="btn btn-primary" ng-click="showAddTestCaseScreen()">Add Test Case</button>
-	<br/>
-	 <table class="table" id="test-cases-grid">
-      <thead>
-        <tr>
-		  <th></th>
-          <th>Test Case ID</th>
-          <th>Description</th>
-          <th>Channel Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="info">
-					<td ng-if="testCaseList == null || testCaseList.length == 0"
-						colspan="4" class="text-center">No Records
-						Available to Display</td>
-				</tr>
-				<tr ng-repeat="content in testCaseList"
-					ng-click="viewTestCases(content.testRunID)">
-					<td>
-						<!-- Action Buttons -->
-						<div class="action-buttons">
-							<button class="btn btn-edit" ng-click="showEditTestcaseForm(content.mirthChannel.id, content.id)">Edit</button>
-							<button class="btn btn-view">View</button>
-							<button class="btn btn-disable">Disable</button>
+			<!-- 5.2) Add Test Case Button -->
+			<button type="button" class="btn btn-primary"
+				ng-click="searchTestCases()"
+				ng-disabled="mirthChannelId == '' || mirthChannelId == null">Search</button>
+		</div>
+	</div>
 
-						</div>
-					</td>
-					<td>{{content.testCaseId}}</td>
-					<td>{{content.testCaseDescription}}</td>
-					<td>{{content.mirthChannel.channelName}}</td>
-					<td></td>
-				</tr>
-      </tbody>
-    </table>
-  </form>
+	<div class="panel panel-primary">
+		<div class="panel-heading">Test Case Grid</div>
+		<div class="panel-body">
+			<button type="button" class="btn btn-primary"
+				ng-click="showAddTestCaseScreen()">Add Test Case</button>
+			<br />
+			<table class="table" id="test-cases-grid">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Test Case ID</th>
+						<th>Description</th>
+						<th>Channel Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td ng-if="testCaseList == null || testCaseList.length == 0"
+							colspan="4" class="text-center">No Records Available to
+							Display</td>
+					</tr>
+					<tr ng-repeat="content in testCaseList"
+						ng-click="viewTestCases(content.testRunID)">
+						<td>
+							<!-- Action Buttons -->
+							<div class="action-buttons">
+								<button class="btn btn-sm btn-edit"
+									ng-click="showEditTestcaseForm(content.mirthChannel.id, content.id)">Edit</button>
+								<button class="btn btn-sm btn-disable">Delete</button>
+								<button class="btn btn-sm btn-view" ui-sref="dashboard.test-case-step-list({ 'testCaseId': content.id })">Test Steps</button>
+							</div>
+						</td>
+						<td>{{content.testCaseId}}</td>
+						<td>{{content.testCaseDescription}}</td>
+						<td>{{content.mirthChannel.channelName}}</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

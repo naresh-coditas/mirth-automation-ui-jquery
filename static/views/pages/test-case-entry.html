@@ -1,31 +1,31 @@
 <div id="addTestCaseScreen" class=" mt-5 screen">
-  <h2>Add Test Case</h2>
-  <form>
-    <!-- 6.1) Channel Name Drop Down -->
-    <div class="form-group">
-      <label for="channelDropdown">Channel Name</label>
-      <select class="form-control" id="channelDropdown" name="channel"  ng-model="formData.mirthChannelId"
-      disabled="true">
-      	<option value="">select</option>
-        <option ng-repeat="x in channelList" value="{{x.id}}"
-        ng-selected="{{x.id == formData.mirthChannelId}}">{{x.channelName}}</option>
-      </select>
-    </div>
+	<h2 ng-if="formData.mirthChannelId != ''">Edit Test Case</h2>
+	<h2 ng-if="formData.mirthChannelId == '' || formData.mirthChannelId == null">Add Test Case</h2>
+	<div class="panel panel-primary">
+		<div class="panel-heading">Channel Name: <strong>{{showChannelDesc()}}</strong></div>
+		<div class="panel-body">
+			<!-- 6.2) Test Case Id -->
+			<div class="form-group">
+				<label for="testCaseId">Test Case Id</label> <input type="text"
+					class="form-control" id="testCaseId" name="testCaseId"
+					ng-model="formData.testCaseId">
+			</div>
 
-    <!-- 6.2) Test Case Id -->
-    <div class="form-group">
-      <label for="testCaseId">Test Case Id</label>
-      <input type="text" class="form-control" id="testCaseId" name="testCaseId" ng-model="formData.testCaseId">
-    </div>
-
-    <!-- 6.3) Test Case Description -->
-    <div class="form-group">
-      <label for="testCaseDescription">Test Case Description</label>
-      <textarea class="form-control" id="testCaseDescription" name="testCaseDescription" rows="3" ng-model="formData.testCaseDescription"></textarea>
-    </div>
-    <!-- 6.4) Save and Add Test Steps Buttons -->
-    <button ng-if ="formData.id === null || formData.id == ''" type="button" class="btn btn-primary" ng-click="saveTestCase()">Save</button>
-    <button ng-if ="formData.id !== null && formData.id != ''" type="button" class="btn btn-primary" ng-click="updateTestCase()">Update</button>
-	<button ng-if ="formData.id !== null && formData.id != ''" type="button" class="btn btn-primary" ng-click="showAddStepsList()">Add Test Steps</button>
-  </form>
+			<!-- 6.3) Test Case Description -->
+			<div class="form-group">
+				<label for="testCaseDescription">Test Case Description</label>
+				<textarea class="form-control" id="testCaseDescription"
+					name="testCaseDescription" rows="3"
+					ng-model="formData.testCaseDescription"></textarea>
+			</div>
+			<!-- 6.4) Save and Add Test Steps Buttons -->
+			<button ng-if="formData.id === null || formData.id == ''"
+				type="button" class="btn btn-primary" ng-click="saveTestCase()">Save</button>
+			<button ng-if="formData.id !== null && formData.id != ''"
+				type="button" class="btn btn-primary" ng-click="updateTestCase()">Update</button>
+			<button ng-if="formData.id !== null && formData.id != ''"
+				type="button" class="btn btn-primary" ng-click="showAddStepsList()">Add
+				Test Steps</button>
+		</div>
+	</div>
 </div>

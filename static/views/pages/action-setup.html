@@ -1,80 +1,96 @@
 <div class=" mt-5 screen" id="addTestStepAction">
 	<h2 class="text-left">Test Step Action Entry</h2>
-	<div id="uiConfigForm">
-		<div class="row">
-			<div class="col-md-6 mb-3">
-				<div class="form-group">
-					<label for="elementLabel">Name:</label> <input type="text"
-						class="form-control" id="code" name="code"
-						ng-model="formData.code" required>
-				</div>
-			</div>
-			<div class="col-md-6 mb-3">
-				<div class="form-group">
-					<label for="elementLabel">Executer Class:</label> <input
-						type="text" class="form-control" id="executerClass"
-						name="executerClass" ng-model="formData.executerClass" required>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="elementLabel">Description:</label> <input type="text"
-				class="form-control" id="description" name="description"
-				ng-model="formData.description" required>
-		</div>
-		<button ng-if="formData.id === null || formData.id == ''"
-			type="button" class="btn btn-primary" ng-click="saveTestStepAction()">Save</button>
-		<button ng-if="formData.id !== null && formData.id != ''"
-			type="button" class="btn btn-primary" ng-click="updateTestStepAction()">Update</button>
-		<div ng-if="formData.id !== null && formData.id != ''">
-			<h4 class="text-left">Action UI Elements Configuration</h4>
-			<button class="btn btn-primary float-right" 
-				ng-click="openAddInputUIElement('INPUT')">Add Input UI Element</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-primary float-right" data-bs-toggle="modal"
-				ng-click="openAddInputUIElement('ASSERTION')">Add Assertion
-				UI Element</button>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="btn btn-primary float-right" data-bs-toggle="modal"
-				ng-click="openAddInputUIElement('OUTPUT')">Add
-				Output UI Element</button>
-			<br />
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Action</th>
-						<th>Sequence</th>
-						<th>Input Type</th>
-						<th>Input Label</th>
-						<th>Default Value</th>
-						<th>Element Type</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tr class="info">
-					<td ng-if="formData.actionInputList == null || formData.actionInputList == 0"
-						colspan="4" class="text-center">No Records
-						Available to Display</td>
-				</tr>
-					<!-- Sample Row (Replace with dynamic data) -->
-					<tr ng-repeat="content in formData.actionInputList"
-					ng-click="viewTestCases(content.testRunID)">
-					<td>
-						<!-- Action Buttons -->
-						<div class="action-buttons">
-							<button class="btn btn-edit" ng-click="openEditInputUIElement(content.id)">Edit</button>
-							<button class="btn btn-view">View</button>
-						</div>
-					</td>
-					<td>{{content.sequence}}</td>
-					<td>{{content.inputType}}</td>
-					<td>{{content.inputLabel}}</td>
-					<td>{{content.defaultValue}}</td>
-					<td>{{content.fieldType}}
-				</tr>
-				</tbody>
-			</table>
-		</div>
 
+	<div class="panel panel-primary">
+		<div class="panel-heading">Basic Info</div>
+		<div class="panel-body">
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="elementLabel">Name:</label> <input type="text"
+							class="form-control" id="code" name="code"
+							ng-model="formData.code" required>
+					</div>
+				</div>
+				<div class="col-md-6 mb-3">
+					<div class="form-group">
+						<label for="elementLabel">Executer Class:</label> <input
+							type="text" class="form-control" id="executerClass"
+							name="executerClass" ng-model="formData.executerClass" required>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="elementLabel">Description:</label> <input type="text"
+					class="form-control" id="description" name="description"
+					ng-model="formData.description" required>
+			</div>
+			<button ng-if="formData.id === null || formData.id == ''"
+				type="button" class="btn btn-primary"
+				ng-click="saveTestStepAction()">Save</button>
+			<button ng-if="formData.id !== null && formData.id != ''"
+				type="button" class="btn btn-primary"
+				ng-click="updateTestStepAction()">Update</button>
+		</div>
+	</div>
+
+	<div class="panel panel-primary" ng-if="formData.id !== null && formData.id != ''">
+		<div class="panel-heading">Action Parameters Configuration</div>
+		<div class="panel-body">
+
+			<div>
+				<button class="btn btn-primary float-right"
+					ng-click="showParameterPopup('INPUT', '')">Add Input
+					Parameter</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-primary float-right" data-bs-toggle="modal"
+					ng-click="showParameterPopup('ASSERTION', '')">Add
+					Assertion Parameter</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-primary float-right" data-bs-toggle="modal"
+					ng-click="showParameterPopup('OUTPUT', '')">Add Output
+					Parameter</button>
+				<br />
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Action</th>
+							<th>Sequence</th>
+							<th>Input Type</th>
+							<th>Input Label</th>
+							<th>Default Value</th>
+							<th>Parameter Type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="info">
+							<td
+								ng-if="formData.actionInputList == null || formData.actionInputList == 0"
+								colspan="4" class="text-center">No Records Available to
+								Display</td>
+						</tr>
+						<!-- Sample Row (Replace with dynamic data) -->
+						<tr ng-repeat="content in formData.actionInputList"
+							ng-click="viewTestCases(content.testRunID)">
+							<td>
+								<!-- Action Buttons -->
+								<div class="action-buttons">
+									<button class="btn btn-edit btn-sm"
+										ng-click="showParameterPopup(content.fieldType, content.id)">Edit</button>
+									<button class="btn btn-disable btn-sm">Delete</button>
+								</div>
+							</td>
+							<td>{{content.sequence}}</td>
+							<td>{{content.inputType}}</td>
+							<td>{{content.inputLabel}}</td>
+							<td>{{content.defaultValue}}</td>
+							<td>{{content.fieldType}}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
 	</div>
 </div>
