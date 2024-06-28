@@ -157,3 +157,6 @@ body {
 .panel-heading a{
 	color: #fff;
 }
+.action-buttons span{
+	color: #337ab7;
+}

@@ -14,7 +14,6 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>Channel Id</th>
 							<th>Channel Name</th>
 							<th>Failed Percentage</th>
 							<th>Last Test Status</th>
@@ -31,13 +30,11 @@
 							<td>
 								<!-- Action Buttons -->
 								<div class="action-buttons">
-									<button class="btn btn-sm btn-edit"><i class="fa fa-history fa-fw"></i>Edit</button>
-									<button class="btn btn-sm btn-view">View</button>
-									<button class="btn btn-sm btn-disable">Disable</button>
-
+									<span title="Edit"><i class="fa fa-edit fa-lg "></i></span>
+									<span title="Discard"><i class="fa fa-trash fa-lg "></i></span>
+									<span title="Disable"><i class="fa fa-ban fa-lg "></i></span>
 								</div>
 							</td>
-							<td>{{content.mirthServerChannelId}}</td>
 							<td>{{content.channelName}}</td>
 							<td>{{content.failureTestRate}}</td>
 							<td></td>
@@ -51,7 +48,7 @@
 							</td>
 
 							<script type="text/javascript">
-								$('td').tooltip({
+								$('.action-buttons span').tooltip({
 									container : 'body'
 								});
 							</script>
