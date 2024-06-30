@@ -9,6 +9,8 @@
 angular.module('sbAdminApp')
   .controller('DashboardHeaderController', function($scope,$position) {
 	$scope.collapseVar = 0;
+	$scope.totalPages = 0;
+    $scope.currentPage = 1;
 	$scope.toggleSystemMenu = function(){
 		if($scope.collapseVar == 0){
 			$scope.collapseVar = 1;
@@ -16,5 +18,5 @@ angular.module('sbAdminApp')
 		else{
 			$scope.collapseVar = 0;
 		}
-	}
+	};
   });

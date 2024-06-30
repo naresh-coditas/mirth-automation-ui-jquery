@@ -14,9 +14,7 @@
 				<div class="col-md-4 mb-3">
 					<div class="form-group">
 						<label for="elementLabel">Identifier Code:</label> <input
-							type="text" class="form-control" id="elementLabel"
-							name="elementLabel"
-							ng-model="actionUIInputData.inputIdentifierName" required>
+							type="text" class="form-control" ng-model="actionUIInputData.inputIdentifierName" required restrict-input="[^a-zA-Z0-9_]">
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">

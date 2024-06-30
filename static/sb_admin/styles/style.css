@@ -160,3 +160,43 @@ body {
 .action-buttons span{
 	color: #337ab7;
 }
+.page-link{
+	cursor : pointer;
+}
+
+.test-run-history-box{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.test-run-history-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.test-run-history-box table th, td {
+   white-space: nowrap;
+}
+/* Custom scrollbar styles for WebKit browsers */
+.test-run-history-box::-webkit-scrollbar {
+    height: 12px; /* height for horizontal scrollbar */
+}
+
+.test-run-history-box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* color of the scrollbar track */
+}
+
+.test-run-history-box::-webkit-scrollbar-thumb {
+    background: #888; /* color of the scrollbar thumb */
+    border-radius: 10px; /* rounded corners for the thumb */
+}
+
+.test-run-history-box::-webkit-scrollbar-thumb:hover {
+    background: #555; /* color of the thumb when hovered */
+}
+
+/* Custom scrollbar styles for Firefox */
+.test-run-history-box {
+    scrollbar-width: thin; /* width of the scrollbar */
+    scrollbar-color: #888 #f1f1f1; /* thumb color and track color */
+}

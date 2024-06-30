@@ -49,7 +49,8 @@ angular
             return $ocLazyLoad.load({
               name:'sbAdminApp',
               files:[
-				'static/sb_admin/scripts/controllers/DashboardHeaderController.js'
+				'static/sb_admin/scripts/controllers/DashboardHeaderController.js',
+				
               ]
             })
           },
@@ -223,6 +224,21 @@ angular
               name:'sbAdminApp',
               files:[
 				'static/sb_admin/scripts/controllers/ActionListController.js',
+              ]
+            })
+          }
+        }
+    })
+    .state('dashboard.test-history',{
+        templateUrl:'static/views/pages/test-run-history.html',
+        controller:'TestHistoryListController',
+        url:'/test-history',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+				'static/sb_admin/scripts/controllers/TestHistoryListController.js',
               ]
             })
           }

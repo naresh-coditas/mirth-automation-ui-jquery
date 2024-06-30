@@ -8,7 +8,7 @@
 			<div class="form-group">
 				<label for="testCaseId">Test Case Id</label> <input type="text"
 					class="form-control" id="testCaseId" name="testCaseId"
-					ng-model="formData.testCaseId">
+					ng-model="formData.testCaseId" restrict-input="[^a-zA-Z0-9_]">
 			</div>
 
 			<!-- 6.3) Test Case Description -->

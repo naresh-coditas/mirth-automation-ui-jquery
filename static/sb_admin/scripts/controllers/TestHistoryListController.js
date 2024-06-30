@@ -7,14 +7,14 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-	.controller('ChannelController', function($scope, $position, $http, API_CONFIG, $state, $sce,$modal) {
+	.controller('TestHistoryListController', function($scope, $position, $http, API_CONFIG, $state, $sce,$modal) {
 		
 		$scope.init = function() {
 			
-			$scope.listChannels(1);
+			$scope.listTestHistory(1);
 		};
 
-		$scope.listChannels = function(page) {
+		$scope.listTestHistory = function(page) {
 			var config = {
 				headers: {
 					'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken'), // Set the Authorization header with the JWT token
@@ -27,7 +27,7 @@ angular.module('sbAdminApp')
                 }
 			};
 			
-			$http.get(API_CONFIG.BASE_URL+"/channels", config).success(function(response) {
+			$http.get(API_CONFIG.BASE_URL+"/test-run-history", config).success(function(response) {
 				$scope.contents = response.content;
                 $scope.totalPages = response.totalPages;
                 $scope.currentPage = page;
@@ -38,7 +38,7 @@ angular.module('sbAdminApp')
 		};
 		$scope.setPage = function(page) {
             if (page >= 1 && page <= $scope.totalPages) {
-                $scope.listChannels(page);
+                $scope.listTestHistory(page);
             }
         };
 		$scope.init();
