@@ -41,5 +41,8 @@ angular.module('sbAdminApp')
                 $scope.listChannels(page);
             }
         };
+        $scope.viewEnableChannelPage = function(){
+			$state.go('dashboard.channel-automation-enable');
+		};
 		$scope.init();
 	});

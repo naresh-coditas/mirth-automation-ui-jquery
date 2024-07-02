@@ -123,6 +123,21 @@ angular
           }
         }
     })
+    .state('dashboard.channel-automation-enable',{
+        templateUrl:'static/views/pages/channel-automation-enable.html',
+        controller:'ChannelAutomationEnableController',
+        url:'/channel-entry',
+        resolve: {
+          loadMyFiles:function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+				'static/sb_admin/scripts/controllers/ChannelAutomationEnableController.js',
+              ]
+            })
+          }
+        }
+    })
       .state('dashboard.test-case-list',{
         templateUrl:'static/views/pages/test-case-list.html',
         controller:'TestCaseListController',

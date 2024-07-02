@@ -1,0 +1,49 @@
+<div id="addChannelScreen" class="screen">
+	<h2>Enable Automation for Channel</h2>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			Basic Info</strong>
+		</div>
+		<div class="panel-body">
+			<!-- 3.1) Channel Drop Down -->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="channelDropdown">Channel Name</label> <select
+							class="form-control" id="channelDropdown" name="channel"
+							ng-model="mirthServerChannelId">
+							<option value="">Select Channel</option>
+							<option ng-repeat="x in channelList" value="{{x.code}}"
+								ng-selected="{{x.code == formData.mirthChannelId}}">{{x.description}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="messageDropdown">Message Format Type</label> <select
+							class="form-control" id="messageDropdown" name="channel"
+							ng-model="inputMessageType">
+							<option value="">Select Format</option>
+							<option ng-repeat="x in messageFormatTypes" value="{{x.code}}"
+								ng-selected="{{x.code == formData.inputMessageType}}">{{x.description}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- 3.2) Raw Input Message Template -->
+			<div class="form-group">
+				<label for="messageTemplate">Raw Input Message Template</label>
+				<textarea class="form-control" id="messageTemplate"
+					name="messageTemplate" rows="5">MSH|^~\&|CLIENTNAME|CLIENTEHR|||20200818084530||SIU^S12|11111111|P|2.7||||||||||
+SCH|01928374||||||||30|min|1^^^20160515133000||||||||||||||BOOKED
+PID|1||75524||ABCD^DOREEN||19660818|F|||111 AVE^^RACINE^WI^53405||(111)111-1111^^^ABCD@YAHOO.COM|||||
+PV1|||||||1173^ABCD^JAMES|1176^JOHN^RIGHT|||||||||||01928374
+PRD|RP|JOHN^RRPIGHT|||(111)111-1111</textarea>
+			</div>
+
+			<!-- 3.3) Next Button -->
+			<button type="button" class="btn btn-primary"
+				onclick="showSection('mapParameterScreen')">Next</button>
+		</div>
+	</div>
+</div>

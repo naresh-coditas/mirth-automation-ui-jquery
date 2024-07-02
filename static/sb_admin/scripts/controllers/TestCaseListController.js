@@ -10,7 +10,7 @@ angular.module('sbAdminApp')
 				}
 			};
 
-			$http.get(API_CONFIG.BASE_URL+"/channels", config).success(function(response) {
+			$http.get(API_CONFIG.BASE_URL+"/channels/automation-enabled", config).success(function(response) {
 				$scope.channelList = response;
 			});
 		};
